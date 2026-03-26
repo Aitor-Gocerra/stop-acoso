@@ -1,0 +1,91 @@
+<!-- HEADER -->
+<div class="tel-header">
+  <div class="container">
+    <h1>📞 Directorio de Ayuda</h1>
+    <p>Acceso rápido a todas las líneas de emergencia y recursos de ayuda especializados en acoso escolar y ciberbullying.</p>
+  </div>
+</div>
+
+<!-- EMERGENCY BANNER -->
+<div class="emergency-banner">
+  <div class="container">
+    <div class="banner-content">
+      <div class="banner-left">
+        <span class="banner-icon">🚨</span>
+        <div>
+          <strong>¿Estás en peligro AHORA MISMO?</strong>
+          <p>Si hay una amenaza física inmediata, llama al 112. Si es acoso urgente, llama al 017 o 900 018 018.</p>
+        </div>
+      </div>
+      <div class="banner-numbers">
+        <a class="big-number" href="tel:112">112</a>
+        <a class="big-number accent" href="tel:017">017</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container tel-body">
+
+  <!-- CONTACTS GRID -->
+  <div class="section-header" style="margin-bottom:24px">
+    <h2 class="section-title">Teléfonos de atención</h2>
+    <p class="section-subtitle">Todos los números están verificados y actualizados.</p>
+  </div>
+
+  <div class="contacts-grid">
+    <div class="contact-card" *ngFor="let c of contacts" [style.--cc]="c.color" [class.urgent]="c.urgent">
+      <div class="cc-header" [style.background]="c.bg">
+        <div class="cc-icon">{{ c.icon }}</div>
+        <div class="cc-urgent-badge" *ngIf="c.urgent">URGENTE</div>
+      </div>
+      <div class="cc-body">
+        <h3 class="cc-name">{{ c.name }}</h3>
+        <a class="cc-number" [style.color]="c.color" [href]="'tel:' + c.number">
+          {{ c.number }}
+        </a>
+        <p class="cc-desc">{{ c.desc }}</p>
+        <div class="cc-meta">
+          <div class="meta-item">
+            <span class="meta-icon">🕐</span>
+            <span>{{ c.available }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>{{ c.who }}</span>
+          </div>
+        </div>
+      </div>
+      <a class="cc-call-btn" [style.background]="c.color" [href]="'tel:' + c.number">
+        📞 Llamar {{ c.number }}
+      </a>
+    </div>
+  </div>
+
+  <!-- ONLINE RESOURCES -->
+  <div class="online-section">
+    <h2 class="section-title">Recursos online</h2>
+    <div class="online-grid">
+      <div class="online-card" *ngFor="let r of onlineResources">
+        <span class="online-icon">{{ r.icon }}</span>
+        <div>
+          <strong>{{ r.name }}</strong>
+          <p>{{ r.desc }}</p>
+          <span class="online-url">{{ r.url }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAT CTA -->
+  <div class="chat-cta">
+    <div class="cta-left">
+      <h3>¿Prefieres escribirlo en lugar de llamar?</h3>
+      <p>Usa el chat anónimo de Stop Acoso. El docente de confianza de tu centro recibirá tu mensaje de forma inmediata y activará el protocolo de entorno seguro.</p>
+    </div>
+    <a routerLink="/login" class="btn btn-accent btn-lg">
+      💬 Abrir chat anónimo
+    </a>
+  </div>
+
+</div>

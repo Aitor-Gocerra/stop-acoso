@@ -1,0 +1,151 @@
+<div class="panel-page">
+
+  <!-- HEADER -->
+  <div class="panel-header">
+    <div class="container">
+      <div class="header-content">
+        <div>
+          <h1>Panel Docente · Mediador/a de Entorno Seguro</h1>
+          <p>Centro: Escuela Virgen de Guadalupe, Badajoz · Sesión activa</p>
+        </div>
+        <div class="header-stats">
+          <div class="hstat">
+            <span class="hstat-num">{{ cases.length }}</span>
+            <span class="hstat-label">Casos</span>
+          </div>
+          <div class="hstat hstat-alert">
+            <span class="hstat-num">{{ cases.length - 1 }}</span>
+            <span class="hstat-label">Activos</span>
+          </div>
+          <div class="hstat hstat-danger">
+            <span class="hstat-num">2</span>
+            <span class="hstat-label">Graves</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-layout">
+
+    <!-- SIDEBAR -->
+    <div class="cases-sidebar">
+      <div class="sidebar-title">
+        <span>Casos anónimos</span>
+        <span class="cases-count">{{ cases.length }}</span>
+      </div>
+
+      <div
+        class="case-item"
+        *ngFor="let c of cases"
+        [class.active]="activeCase?.id === c.id"
+        [class.case-grave]="c.level === 'grave'"
+        (click)="selectCase(c)"
+      >
+        <div class="case-top">
+          <span class="case-code">{{ c.code }}</span>
+          <div class="case-meta">
+            <span class="badge" [ngClass]="getLevelClass(c.level)">{{ getLevelLabel(c.level) }}</span>
+            <span class="unread-dot" *ngIf="c.unread > 0">{{ c.unread }}</span>
+          </div>
+        </div>
+        <div class="case-preview">{{ c.lastMessage }}</div>
+        <div class="case-bottom">
+          <span class="case-time">{{ c.time }}</span>
+          <span class="test-score">Test: {{ c.testScore }}/10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN AREA -->
+    <div class="panel-main">
+
+      <!-- EMPTY STATE -->
+      <div class="empty-state" *ngIf="!activeCase">
+        <div class="empty-icon">💬</div>
+        <h3>Selecciona un caso</h3>
+        <p>Elige un caso de la lista para ver la conversación y gestionar la alerta.</p>
+      </div>
+
+      <!-- ACTIVE CASE -->
+      <div class="case-panel" *ngIf="activeCase">
+
+        <!-- CASE HEADER -->
+        <div class="case-panel-header">
+          <div class="case-header-left">
+            <div class="anon-avatar">{{ activeCase.code.slice(-3) }}</div>
+            <div>
+              <div class="case-title">{{ activeCase.code }}</div>
+              <div class="case-subtitle">Test de diagnóstico: {{ activeCase.testScore }}/10 respuestas afirmativas</div>
+            </div>
+          </div>
+          <div class="case-header-right">
+            <span class="badge" [ngClass]="getLevelClass(activeCase.level)">{{ getLevelLabel(activeCase.level) }}</span>
+            <span class="status-badge" [class.resolved]="activeCase.status === 'resuelto'">
+              {{ activeCase.status === 'resuelto' ? '✅ Resuelto' : activeCase.status === 'nuevo' ? '🔴 Nuevo' : '🟡 En proceso' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- CHAT AREA -->
+        <div class="case-messages">
+          <div
+            *ngFor="let msg of activeMessages"
+            [class]="msg.type === 'system' ? 'msg-system' : (msg.fromMe ? 'msg-row msg-mine' : 'msg-row msg-theirs')"
+          >
+            <div *ngIf="msg.type === 'system'" class="system-bubble">{{ msg.text }}</div>
+            <ng-container *ngIf="msg.type !== 'system'">
+              <div class="anon-ava" *ngIf="!msg.fromMe">🎭</div>
+              <div class="bubble" [class.bubble-mine]="msg.fromMe">
+                {{ msg.text }}
+                <span class="msg-time" *ngIf="msg.time">{{ msg.time }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- REPORT CONFIRM MODAL -->
+        <div class="report-modal" *ngIf="showReportConfirm">
+          <div class="report-modal-box">
+            <h3>⚠️ Activar Protocolo de Entorno Seguro</h3>
+            <p>Vas a enviar una copia cifrada de esta conversación a la Dirección del centro. Se mantendrá el anonimato del alumno si no ha querido revelarse.</p>
+            <p><strong>¿Confirmas que hay indicios claros de acoso?</strong></p>
+            <div class="modal-buttons">
+              <button class="btn btn-danger" (click)="sendReport()">Sí, activar protocolo</button>
+              <button class="btn btn-outline" (click)="showReportConfirm=false">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REPORT SENT -->
+        <div class="report-sent" *ngIf="reportSent">
+          ✅ Protocolo activado. La Dirección ha recibido la alerta.
+        </div>
+
+        <!-- INPUT -->
+        <div class="case-input" *ngIf="activeCase.status !== 'resuelto'">
+          <div class="input-row">
+            <input
+              class="msg-input"
+              type="text"
+              placeholder="Responde con empatía... Haz preguntas abiertas"
+              [(ngModel)]="newMessage"
+              (keyup.enter)="sendReply()"
+            />
+            <button class="send-btn" (click)="sendReply()" [disabled]="!newMessage.trim()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </div>
+          <div class="report-row">
+            <button class="btn btn-danger btn-sm" (click)="confirmReport()" *ngIf="!reportSent">
+              🚨 Informar a Responsable de Seguridad
+            </button>
+            <span class="report-hint">Manual: "Para intervenir mañana en el patio, necesitaría saber quién eres. Tu secreto sigue a salvo conmigo."</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

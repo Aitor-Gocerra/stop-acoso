@@ -1,0 +1,117 @@
+<div class="chat-page">
+
+  <!-- HEADER -->
+  <div class="chat-header">
+    <div class="container">
+      <div class="header-content">
+        <div>
+          <h1>Chat Anónimo Seguro</h1>
+          <p>Tu identidad está protegida · Cifrado de extremo a extremo · Usuario-{{ anonCode }}</p>
+        </div>
+        <div class="header-badges">
+          <span class="badge badge-green">🔒 Anónimo</span>
+          <span class="badge badge-blue">E2E Cifrado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container chat-container">
+
+    <!-- STEP 1: CHOOSE TEACHER -->
+    <div class="teacher-selection" *ngIf="!selectedTeacher">
+      <div class="selection-header">
+        <h2>Elige a tu persona de confianza</h2>
+        <p>Selecciona al docente o mediador con quien te sientas más cómodo/a. Solo esa persona podrá leer tu mensaje.</p>
+      </div>
+
+      <div class="teachers-grid">
+        <div
+          class="teacher-card"
+          *ngFor="let t of teachers"
+          [class.unavailable]="!t.available"
+          (click)="selectTeacher(t)"
+        >
+          <div class="teacher-avatar" [style.background]="t.color">{{ t.initials }}</div>
+          <div class="teacher-info">
+            <div class="teacher-name">{{ t.name }}</div>
+            <div class="teacher-role">{{ t.role }}</div>
+            <div class="teacher-specialty">{{ t.specialty }}</div>
+          </div>
+          <div class="teacher-status" [class.online]="t.available" [class.offline]="!t.available">
+            {{ t.available ? 'Disponible' : 'No disponible' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="selection-note">
+        <strong>🔐 Recordatorio de seguridad:</strong> Ningún docente verá tu nombre real. Solo verán un código anónimo como "Usuario-A45". Tu secreto está a salvo.
+      </div>
+    </div>
+
+    <!-- STEP 2: CHAT -->
+    <div class="chat-window" *ngIf="selectedTeacher">
+      <div class="chat-toolbar">
+        <button class="back-btn" (click)="goBack()">
+          ← Cambiar interlocutor
+        </button>
+        <div class="chat-with">
+          <div class="chat-avatar" [style.background]="selectedTeacher.color">{{ selectedTeacher.initials }}</div>
+          <div>
+            <div class="chat-name">{{ selectedTeacher.name }}</div>
+            <div class="chat-role">{{ selectedTeacher.role }} · En línea</div>
+          </div>
+        </div>
+        <div class="anon-indicator">
+          🔒 Anónimo
+        </div>
+      </div>
+
+      <div class="messages-area">
+        <div
+          *ngFor="let msg of messages"
+          [class]="msg.type === 'system' ? 'msg-system' : (msg.fromMe ? 'msg-row msg-mine' : 'msg-row msg-theirs')"
+        >
+          <div *ngIf="msg.type === 'system'" class="system-bubble">{{ msg.text }}</div>
+
+          <ng-container *ngIf="msg.type !== 'system'">
+            <div class="avatar-small" *ngIf="!msg.fromMe" [style.background]="selectedTeacher.color">
+              {{ selectedTeacher.initials }}
+            </div>
+            <div class="bubble" [class.bubble-mine]="msg.fromMe">
+              {{ msg.text }}
+              <span class="msg-time" *ngIf="msg.time">{{ msg.time }}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <div class="attachment-preview" *ngIf="attachmentName">
+          📎 {{ attachmentName }}
+          <button (click)="attachmentName=''">✕</button>
+        </div>
+        <div class="input-row">
+          <label class="attach-btn" title="Adjuntar captura de pantalla">
+            📎
+            <input type="file" style="display:none" (change)="attachmentName='captura_pantalla.jpg'">
+          </label>
+          <input
+            class="msg-input"
+            type="text"
+            placeholder="Escribe aquí lo que está pasando..."
+            [(ngModel)]="newMessage"
+            (keyup.enter)="sendMessage()"
+          />
+          <button class="send-btn" (click)="sendMessage()" [disabled]="!newMessage.trim() && !attachmentName">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          </button>
+        </div>
+        <div class="input-note">
+          ⚠️ Este chat es anónimo. En caso de denuncia falsa con dolo, un juez puede solicitar el levantamiento del anonimato.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

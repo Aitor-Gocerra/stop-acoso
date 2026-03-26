@@ -1,0 +1,170 @@
+<div class="login-page">
+  <div class="login-container">
+
+    <!-- LEFT PANEL -->
+    <div class="login-info">
+      <div class="info-logo">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="#64b5f6">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+        </svg>
+        <span>STOP<span style="color:#64b5f6">ACOSO</span></span>
+      </div>
+      <h1>Tu espacio seguro.</h1>
+      <p>Accede de forma anónima. Tu identidad queda protegida mediante cifrado de extremo a extremo desde el primer momento.</p>
+
+      <div class="info-guarantees">
+        <div class="guarantee-item">
+          <span class="g-icon">🔒</span>
+          <div>
+            <strong>Anonimato técnico</strong>
+            <p>El correo solo verifica que eres alumno. Tu nombre desaparece del sistema.</p>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <span class="g-icon">🔐</span>
+          <div>
+            <strong>Cifrado E2E</strong>
+            <p>Ni siquiera los administradores pueden leer tus mensajes.</p>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <span class="g-icon">⚖️</span>
+          <div>
+            <strong>Protección legal</strong>
+            <p>Solo un juez, ante delito grave o denuncia falsa, puede solicitar trazabilidad.</p>
+          </div>
+        </div>
+        <div class="guarantee-item">
+          <span class="g-icon">🏫</span>
+          <div>
+            <strong>Protocolo activado</strong>
+            <p>El centro educativo recibe la alerta y actúa de inmediato.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="login-form-panel">
+      <div class="tabs">
+        <button class="tab" [class.active]="activeTab==='alumno'" (click)="activeTab='alumno'">
+          👩‍🎓 Soy Alumno/a
+        </button>
+        <button class="tab" [class.active]="activeTab==='docente'" (click)="activeTab='docente'">
+          👩‍🏫 Soy Docente
+        </button>
+      </div>
+
+      <!-- ALUMNO FORM -->
+      <div *ngIf="activeTab === 'alumno'" class="form-content">
+        <h2>Acceso anónimo</h2>
+        <p class="form-desc">Tu correo solo verifica que perteneces al centro. Nadie lo verá.</p>
+
+        <div class="anon-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          Se genera un Token Anónimo · Tu identidad queda oculta
+        </div>
+
+        <form (ngSubmit)="loginAlumno()" #alumnoF="ngForm">
+          <div class="form-group">
+            <label for="email">Correo corporativo del centro</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <input
+                type="email"
+                id="email"
+                placeholder="alumno@escuela.edu.es"
+                [(ngModel)]="alumnoForm.email"
+                name="email"
+                required
+                [class.error]="alumnoSubmitted && !alumnoForm.email"
+              />
+            </div>
+            <span class="field-note">Solo para verificación · No se almacena</span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Contraseña personal</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              <input
+                type="password"
+                id="password"
+                placeholder="Mínimo 8 caracteres"
+                [(ngModel)]="alumnoForm.password"
+                name="password"
+                required
+                [class.error]="alumnoSubmitted && !alumnoForm.password"
+              />
+            </div>
+            <span class="field-note">Para volver a tu conversación y ver respuestas</span>
+          </div>
+
+          <button type="submit" class="btn btn-accent btn-block">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            Entrar de forma anónima
+          </button>
+        </form>
+
+        <div class="test-link">
+          ¿No sabes si lo que vives es acoso?
+          <a routerLink="/test">Haz el test primero →</a>
+        </div>
+      </div>
+
+      <!-- DOCENTE FORM -->
+      <div *ngIf="activeTab === 'docente'" class="form-content">
+        <h2>Panel Docente</h2>
+        <p class="form-desc">Accede a tu panel de casos anónimos. Gestiona las alertas de tu centro.</p>
+
+        <div class="docente-badge">
+          🏫 Mediador/a de Entorno Seguro · Centro educativo
+        </div>
+
+        <form (ngSubmit)="loginDocente()" #docenteF="ngForm">
+          <div class="form-group">
+            <label for="usuario">Usuario</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+              <input
+                type="text"
+                id="usuario"
+                placeholder="nombre.apellido"
+                [(ngModel)]="docenteForm.usuario"
+                name="usuario"
+                required
+                [class.error]="docenteSubmitted && !docenteForm.usuario"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="doc-password">Contraseña</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2z"/></svg>
+              <input
+                type="password"
+                id="doc-password"
+                placeholder="Contraseña del centro"
+                [(ngModel)]="docenteForm.password"
+                name="doc-password"
+                required
+                [class.error]="docenteSubmitted && !docenteForm.password"
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Acceder al panel
+          </button>
+        </form>
+
+        <div class="test-link">
+          ¿Primera vez? Contacta con la administración de tu centro.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

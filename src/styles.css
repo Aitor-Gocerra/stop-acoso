@@ -1,1 +1,110 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #1565c0;
+  --primary-light: #1e88e5;
+  --primary-dark: #0d47a1;
+  --accent: #00897b;
+  --accent-light: #26a69a;
+  --warning: #ef6c00;
+  --danger: #c62828;
+  --success: #2e7d32;
+  --bg: #f0f4f8;
+  --card-bg: #ffffff;
+  --text-primary: #1a1a2e;
+  --text-secondary: #546e7a;
+  --border: #cfd8dc;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.08);
+  --shadow: 0 4px 16px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --transition: all 0.25s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: var(--shadow); text-decoration: none; color: white; }
+.btn-accent { background: var(--accent); color: white; }
+.btn-accent:hover { background: #00695c; transform: translateY(-1px); box-shadow: var(--shadow); text-decoration: none; color: white; }
+.btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.btn-outline:hover { background: var(--primary); color: white; text-decoration: none; }
+.btn-danger { background: var(--danger); color: white; }
+.btn-danger:hover { background: #b71c1c; }
+.btn-warning { background: var(--warning); color: white; }
+.btn-warning:hover { background: #e65100; }
+.btn-success { background: var(--success); color: white; }
+.btn-success:hover { background: #1b5e20; }
+.btn-lg { padding: 16px 36px; font-size: 17px; border-radius: var(--radius); }
+.btn-sm { padding: 8px 16px; font-size: 13px; }
+.btn-block { width: 100%; justify-content: center; }
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-green { background: #e8f5e9; color: var(--success); }
+.badge-yellow { background: #fff8e1; color: #f57f17; }
+.badge-red { background: #ffebee; color: var(--danger); }
+.badge-blue { background: #e3f2fd; color: var(--primary); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 64px 0; }
+.section-sm { padding: 40px 0; }
+
+.section-header { text-align: center; margin-bottom: 48px; }
+.section-title { font-size: 32px; font-weight: 800; color: var(--text-primary); margin-bottom: 12px; }
+.section-subtitle { font-size: 17px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .section { padding: 40px 0; }
+  .section-title { font-size: 24px; }
+  .container { padding: 0 16px; }
+}
