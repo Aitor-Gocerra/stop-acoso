@@ -43,7 +43,7 @@
           <h3 class="rc-title">{{ r.title }}</h3>
           <p class="rc-desc">{{ r.desc }}</p>
         </div>
-        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color">
+        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color" (click)="openResource(r.url)">
           Ver recurso →
         </button>
       </div>
@@ -64,7 +64,7 @@
           <h3 class="rc-title">{{ r.title }}</h3>
           <p class="rc-desc">{{ r.desc }}</p>
         </div>
-        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color">
+        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color" (click)="openResource(r.url)">
           Ver recurso →
         </button>
       </div>
@@ -91,7 +91,7 @@
           <h3 class="rc-title">{{ r.title }}</h3>
           <p class="rc-desc">{{ r.desc }}</p>
         </div>
-        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color">
+        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color" (click)="openResource(r.url)">
           Ver recurso →
         </button>
       </div>
@@ -105,7 +105,7 @@
       <p>Cápsulas cortas estilo Reels, tutoriales y webinars con expertos. Diseñados para captar la atención del alumnado.</p>
     </div>
     <div class="videos-grid">
-      <div class="video-card" *ngFor="let v of videos">
+      <div class="video-card" *ngFor="let v of videos" (click)="openResource(v.url)" style="cursor:pointer;">
         <div class="video-thumb">
           <span class="video-icon">{{ v.icon }}</span>
           <div class="play-btn">▶</div>
