@@ -1,0 +1,295 @@
+.chat-page { min-height: calc(100vh - 64px); display: flex; flex-direction: column; }
+
+.chat-header {
+  background: linear-gradient(135deg, #0d47a1, #1565c0);
+  color: white;
+  padding: 28px 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chat-header h1 { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
+.chat-header p { font-size: 13px; color: rgba(255,255,255,0.75); }
+.header-badges { display: flex; gap: 8px; }
+
+.chat-container { flex: 1; padding: 32px 24px; max-width: 900px; }
+
+/* TEACHER SELECTION */
+.selection-header { margin-bottom: 28px; }
+.selection-header h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+.selection-header p { font-size: 15px; color: var(--text-secondary); }
+
+.teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.teacher-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.teacher-card:hover:not(.unavailable) {
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.teacher-card.unavailable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.teacher-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.teacher-info { flex: 1; min-width: 0; }
+.teacher-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.teacher-role { font-size: 13px; color: var(--primary); font-weight: 600; }
+.teacher-specialty { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+.teacher-status {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+.teacher-status.online { background: #e8f5e9; color: var(--success); }
+.teacher-status.offline { background: #f5f5f5; color: #9e9e9e; }
+
+.selection-note {
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  font-size: 14px;
+  color: #1b5e20;
+  line-height: 1.5;
+}
+
+/* CHAT WINDOW */
+.chat-window {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 200px);
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.chat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: #fafafa;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.back-btn:hover { background: var(--bg); color: var(--primary); }
+
+.chat-with { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.chat-name { font-size: 15px; font-weight: 700; }
+.chat-role { font-size: 12px; color: var(--success); }
+
+.anon-indicator {
+  background: #e8f5e9;
+  color: var(--success);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.messages-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f8f9fa;
+}
+
+.msg-system { display: flex; justify-content: center; }
+.system-bubble {
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  max-width: 90%;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.msg-row { display: flex; align-items: flex-end; gap: 8px; }
+.msg-mine { flex-direction: row-reverse; }
+
+.avatar-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  background: white;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.bubble-mine { background: var(--primary); color: white; }
+
+.msg-time {
+  display: block;
+  font-size: 10px;
+  opacity: 0.6;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* INPUT */
+.chat-input-area {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  background: white;
+}
+
+.attachment-preview {
+  background: #e3f2fd;
+  color: var(--primary);
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.attachment-preview button { background: none; border: none; cursor: pointer; font-size: 14px; }
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.attach-btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+.attach-btn:hover { background: var(--border); }
+
+.msg-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.msg-input:focus { border-color: var(--primary); }
+
+.send-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.send-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
+.send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.input-note {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .teachers-grid { grid-template-columns: 1fr; }
+  .chat-window { height: calc(100vh - 180px); }
+}

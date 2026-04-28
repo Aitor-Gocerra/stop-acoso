@@ -1,0 +1,152 @@
+<!-- HEADER -->
+<div class="recursos-header">
+  <div class="container">
+    <h1>Centro de Recursos</h1>
+    <p>Documentación, vídeos y guías para toda la comunidad educativa. Actualizados y validados por expertos.</p>
+  </div>
+</div>
+
+<div class="container recursos-body">
+
+  <!-- TABS -->
+  <div class="tabs-wrapper">
+    <div class="tabs-bar">
+      <button class="tab" [class.active]="activeTab==='alumnos'" (click)="activeTab='alumnos'">
+        👩‍🎓 Para Alumnos
+      </button>
+      <button class="tab" [class.active]="activeTab==='familias'" (click)="activeTab='familias'">
+        👨‍👩‍👧 Para Familias
+      </button>
+      <button class="tab" [class.active]="activeTab==='docentes'" (click)="activeTab='docentes'">
+        👩‍🏫 Para Docentes
+      </button>
+      <button class="tab" [class.active]="activeTab==='videos'" (click)="activeTab='videos'">
+        🎥 Vídeos
+      </button>
+      <button class="tab" [class.active]="activeTab==='protocolo'" (click)="activeTab='protocolo'">
+        📋 Protocolo
+      </button>
+    </div>
+  </div>
+
+  <!-- ALUMNOS -->
+  <div class="tab-content" *ngIf="activeTab === 'alumnos'">
+    <div class="tab-intro">
+      <h2>Recursos para el Alumnado</h2>
+      <p>Guías de seguridad digital, tutoriales y materiales para saber cómo actuar si sufres o eres testigo de acoso.</p>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card" *ngFor="let r of alumnoResources" [style.--rc]="r.color">
+        <div class="rc-icon" [style.background]="r.color + '15'" [style.color]="r.color">{{ r.icon }}</div>
+        <div class="rc-body">
+          <div class="rc-type" [style.color]="r.color">{{ r.type }}</div>
+          <h3 class="rc-title">{{ r.title }}</h3>
+          <p class="rc-desc">{{ r.desc }}</p>
+        </div>
+        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color" (click)="openResource(r.url)">
+          Ver recurso →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAMILIAS -->
+  <div class="tab-content" *ngIf="activeTab === 'familias'">
+    <div class="tab-intro">
+      <h2>Recursos para Familias</h2>
+      <p>Cómo detectar el acoso en casa, qué pasos legales tomar y cómo hablar con tu hijo/a.</p>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card" *ngFor="let r of familiaResources" [style.--rc]="r.color">
+        <div class="rc-icon" [style.background]="r.color + '15'" [style.color]="r.color">{{ r.icon }}</div>
+        <div class="rc-body">
+          <div class="rc-type" [style.color]="r.color">{{ r.type }}</div>
+          <h3 class="rc-title">{{ r.title }}</h3>
+          <p class="rc-desc">{{ r.desc }}</p>
+        </div>
+        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color" (click)="openResource(r.url)">
+          Ver recurso →
+        </button>
+      </div>
+    </div>
+
+    <div class="family-note">
+      <h3>📞 ¿Tu hijo/a está en peligro ahora mismo?</h3>
+      <p>No esperes. Llama al <strong>018</strong> (gratuito, 24h) o al <strong>900 018 018</strong>. También puedes usar el chat anónimo de Stop Acoso para poner en conocimiento del centro la situación de forma inmediata.</p>
+      <a routerLink="/login" class="btn btn-danger">Alertar al centro ahora</a>
+    </div>
+  </div>
+
+  <!-- DOCENTES -->
+  <div class="tab-content" *ngIf="activeTab === 'docentes'">
+    <div class="tab-intro">
+      <h2>Recursos para Docentes y Mediadores</h2>
+      <p>Artículos, herramientas y manuales para gestionar el panel de Stop Acoso y actuar ante situaciones de acoso.</p>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card" *ngFor="let r of docenteResources" [style.--rc]="r.color">
+        <div class="rc-icon" [style.background]="r.color + '15'" [style.color]="r.color">{{ r.icon }}</div>
+        <div class="rc-body">
+          <div class="rc-type" [style.color]="r.color">{{ r.type }}</div>
+          <h3 class="rc-title">{{ r.title }}</h3>
+          <p class="rc-desc">{{ r.desc }}</p>
+        </div>
+        <button class="rc-btn" [style.background]="r.color + '15'" [style.color]="r.color" (click)="openResource(r.url)">
+          Ver recurso →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VÍDEOS -->
+  <div class="tab-content" *ngIf="activeTab === 'videos'">
+    <div class="tab-intro">
+      <h2>Biblioteca de Vídeos</h2>
+      <p>Cápsulas cortas estilo Reels, tutoriales y webinars con expertos. Diseñados para captar la atención del alumnado.</p>
+    </div>
+    <div class="videos-grid">
+      <div class="video-card" *ngFor="let v of videos" (click)="openResource(v.url)" style="cursor:pointer;">
+        <div class="video-thumb">
+          <span class="video-icon">{{ v.icon }}</span>
+          <div class="play-btn">▶</div>
+          <div class="video-duration">{{ v.duration }}</div>
+        </div>
+        <div class="video-body">
+          <div class="video-type-badge">{{ v.type }}</div>
+          <h3 class="video-title">{{ v.title }}</h3>
+          <p class="video-desc">{{ v.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROTOCOLO -->
+  <div class="tab-content" *ngIf="activeTab === 'protocolo'">
+    <div class="tab-intro">
+      <h2>Guía del Protocolo Anti-Acoso</h2>
+      <p>¿Qué ocurre cuando se hace una denuncia? Aquí tienes el paso a paso completo, explicado de forma sencilla.</p>
+    </div>
+
+    <div class="protocol-timeline">
+      <div class="protocol-step" *ngFor="let p of protocols">
+        <div class="ps-left">
+          <div class="ps-num">{{ p.num }}</div>
+          <div class="ps-line" *ngIf="p.num !== '6'"></div>
+        </div>
+        <div class="ps-content">
+          <div class="ps-icon">{{ p.icon }}</div>
+          <div>
+            <h3 class="ps-phase">{{ p.phase }}</h3>
+            <p class="ps-desc">{{ p.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="protocol-note">
+      <h3>🗣️ Informar NO es chivarse</h3>
+      <p>Denunciar una situación de acoso es cumplir con una responsabilidad ciudadana y proteger a alguien que lo necesita. La ley te ampara y Stop Acoso garantiza tu anonimato en todo el proceso.</p>
+    </div>
+  </div>
+
+</div>

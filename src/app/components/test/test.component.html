@@ -1,0 +1,149 @@
+<div class="test-page">
+
+  <!-- HEADER -->
+  <div class="test-header">
+    <div class="container">
+      <div class="header-content">
+        <div>
+          <h1>Test de Autodiagnóstico</h1>
+          <p>10 preguntas validadas por expertos en psicología evolutiva · Resultado privado e inmediato</p>
+        </div>
+        <div class="header-badges">
+          <span class="badge badge-blue">Homologado</span>
+          <span class="badge badge-green">Anónimo</span>
+          <span class="badge badge-blue">2 minutos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- INTRO -->
+    <div class="test-intro" *ngIf="!started && !showResult">
+      <div class="intro-icon">📋</div>
+      <h2>¿Estás sufriendo acoso?</h2>
+      <p>Este test de 10 preguntas te ayudará a entender si lo que vives es una broma puntual, un conflicto de convivencia o un caso real de acoso sistemático.</p>
+      <div class="intro-info-grid">
+        <div class="intro-info-item">
+          <span>🔒</span>
+          <strong>100% privado</strong>
+          <p>Nadie conocerá tus respuestas</p>
+        </div>
+        <div class="intro-info-item">
+          <span>⏱️</span>
+          <strong>Solo 2 minutos</strong>
+          <p>10 preguntas directas</p>
+        </div>
+        <div class="intro-info-item">
+          <span>🧠</span>
+          <strong>Validado</strong>
+          <p>Por psicólogos evolutivos</p>
+        </div>
+        <div class="intro-info-item">
+          <span>💬</span>
+          <strong>Acción directa</strong>
+          <p>Te guía al siguiente paso</p>
+        </div>
+      </div>
+      <button class="btn btn-accent btn-lg" (click)="startTest()">
+        Comenzar el test
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+      </button>
+      <p class="intro-note">Si en algún momento necesitas ayuda inmediata, llama al <strong>018</strong> o escribe al <strong>chat anónimo</strong>.</p>
+    </div>
+
+    <!-- QUESTION -->
+    <div class="question-panel" *ngIf="started && !showResult">
+      <div class="progress-bar-wrapper">
+        <div class="progress-info">
+          <span>Pregunta {{ currentQuestion + 1 }} de {{ questions.length }}</span>
+          <span>{{ currentQuestion }} completadas</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="progress"></div>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="question-num">Pregunta {{ currentQuestion + 1 }}</div>
+        <p class="question-text">{{ questions[currentQuestion].text }}</p>
+
+        <div class="answer-buttons">
+          <button class="answer-btn answer-yes" (click)="answer(true)">
+            <span class="answer-icon">✅</span>
+            Sí
+          </button>
+          <button class="answer-btn answer-no" (click)="answer(false)">
+            <span class="answer-icon">❌</span>
+            No
+          </button>
+        </div>
+
+        <button class="back-btn" *ngIf="currentQuestion > 0" (click)="goBack()">
+          ← Volver a la anterior
+        </button>
+      </div>
+
+      <div class="question-dots">
+        <span
+          *ngFor="let q of questions; let i = index"
+          class="dot"
+          [class.done]="answers[i] !== null"
+          [class.current]="i === currentQuestion"
+          [class.yes]="answers[i] === true"
+          [class.no]="answers[i] === false"
+        ></span>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-panel" *ngIf="showResult">
+      <div class="result-card" [style.border-color]="result.color">
+        <div class="result-header" [style.background]="result.bg">
+          <div class="result-icon">{{ result.icon }}</div>
+          <div class="result-badge" [style.color]="result.color">NIVEL {{ result.badge }}</div>
+          <h2 class="result-level" [style.color]="result.color">{{ result.level }}</h2>
+          <p class="result-score">{{ yesCount }} de 10 respuestas afirmativas</p>
+        </div>
+
+        <div class="result-body">
+          <p class="result-message">{{ result.message }}</p>
+
+          <div class="result-scale">
+            <div class="scale-bar">
+              <div class="scale-fill" [style.width.%]="yesCount * 10" [style.background]="result.color"></div>
+            </div>
+            <div class="scale-labels">
+              <span style="color:#2e7d32">0-3 Leve</span>
+              <span style="color:#f57f17">4-6 Moderado</span>
+              <span style="color:#c62828">7-10 Grave</span>
+            </div>
+          </div>
+
+          <div class="result-action-box" [style.border-left-color]="result.color">
+            <strong>Acción recomendada:</strong>
+            <p>{{ result.action }}</p>
+          </div>
+
+          <div class="result-buttons">
+            <button class="btn btn-accent btn-lg" *ngIf="result.cta" (click)="goToChat()">
+              💬 Iniciar chat anónimo ahora
+            </button>
+            <button class="btn btn-outline" (click)="restartTest()">
+              🔄 Repetir el test
+            </button>
+            <a routerLink="/telefonos" class="btn btn-outline">
+              📞 Ver teléfonos de ayuda
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-info-box">
+        <strong>⚖️ Aviso de privacidad:</strong> Este test es completamente anónimo. Los resultados no se almacenan ni se comparten. Solo tú conoces tu resultado.
+      </div>
+    </div>
+
+  </div>
+</div>
