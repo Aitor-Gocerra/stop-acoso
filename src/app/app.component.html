@@ -1,10 +1,29 @@
+<!-- BARRA INSTITUCIONAL SUPERIOR -->
+<div class="top-bar">
+  <div class="nav-container">
+    <div class="top-bar-left">
+      <img src="assets/banderaExt.png" alt="Extremadura" class="topbar-flag">
+      <span>Proyecto educativo</span>
+    </div>
+    <div class="top-bar-right">
+      <a routerLink="/telefonos">🆘 017 · Línea de ayuda</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-container">
     <a class="nav-brand" routerLink="/">
       <svg class="shield-icon" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
       </svg>
-      <span class="brand-text">STOP<span class="brand-accent">ACOSO</span></span>
+      <div class="brand-block">
+        <span class="brand-text">STOP<span class="brand-accent">ACOSO</span></span>
+        <span class="brand-sub">Plataforma anti-acoso escolar</span>
+      </div>
+      <div class="brand-divider"></div>
+      <img src="assets/Logotipo_de_la_Junta_de_Extremadura.svg" alt="Junta de Extremadura" class="nav-junta-logo">
     </a>
 
     <button class="hamburger" (click)="toggleMenu()">
@@ -31,17 +50,22 @@
   <router-outlet></router-outlet>
 </main>
 
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="#64b5f6">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#1D873E">
             <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
           </svg>
-          <span>STOP<span style="color:#64b5f6">ACOSO</span></span>
+          <span>STOP<span class="footer-accent">ACOSO</span></span>
         </div>
-        <p>Plataforma colaborativa para erradicar el acoso escolar en centros educativos.</p>
+        <p>Plataforma colaborativa para erradicar el acoso escolar en centros educativos de Extremadura.</p>
+        <div class="footer-escudo-block">
+          <img src="assets/Escudo_de_Extremadura.svg" alt="Escudo de Extremadura" class="footer-escudo">
+          <span>Extremadura, España</span>
+        </div>
       </div>
       <div class="footer-links">
         <h4>Recursos</h4>

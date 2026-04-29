@@ -1,7 +1,7 @@
 .test-page { padding-bottom: 60px; }
 
 .test-header {
-  background: linear-gradient(135deg, #0d47a1, #1565c0);
+  background: linear-gradient(135deg, #166830, #1D873E);
   color: white;
   padding: 36px 0;
   margin-bottom: 40px;
@@ -82,7 +82,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary));
   border-radius: 4px;
   transition: width 0.4s ease;
 }

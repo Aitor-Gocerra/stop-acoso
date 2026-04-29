@@ -1,7 +1,7 @@
 .chat-page { min-height: calc(100vh - 64px); display: flex; flex-direction: column; }
 
 .chat-header {
-  background: linear-gradient(135deg, #0d47a1, #1565c0);
+  background: linear-gradient(135deg, #166830, #1D873E);
   color: white;
   padding: 28px 0;
 }
@@ -220,7 +220,7 @@
 }
 
 .attachment-preview {
-  background: #e3f2fd;
+  background: #e8f5e9;
   color: var(--primary);
   font-size: 13px;
   padding: 6px 12px;

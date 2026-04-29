@@ -29,7 +29,7 @@ export class RecursosComponent {
     { icon: '💻', title: 'Nuevas Formas de Acoso Digital', desc: 'Ghosting, exclusión digital, deepfakes y otras modalidades de acoso que debes conocer.', type: 'Artículo', color: '#c62828', url: 'https://intef.es/' },
     { icon: '🎭', title: 'Dinámicas de Convivencia', desc: 'Actividades prácticas para mejorar la cohesión del grupo y detectar exclusiones en el aula.', type: 'Actividad', color: '#00897b', url: 'https://www.educacionfpydeportes.gob.es/mc/sgctie/convivencia-escolar.html' },
     { icon: '📊', title: 'Indicadores de detección temprana', desc: 'Checklist para identificar posibles víctimas o agresores en las primeras semanas de curso.', type: 'Herramienta', color: '#ef6c00', url: 'https://convivencia.educacion.gob.es/portada.html' },
-    { icon: '🖥️', title: 'Manual de uso de la plataforma', desc: 'Cómo gestionar el panel de docente, responder casos anónimos y activar el protocolo.', type: 'Manual', color: '#4a148c', url: 'https://www.incibe.es/incibe/sala-de-prensa/noticias/stop-acoso-escolar' },
+    { icon: '🖥️', title: 'Manual de uso de la plataforma', desc: 'Cómo gestionar el panel de docente, responder casos anónimos y activar el protocolo.', type: 'Manual', color: '#4a148c', url: 'https://drive.google.com/file/d/1D9_EzJCFYgSNZKPeaFnSE2iet751eDQB/view' },
   ];
 
   protocols = [

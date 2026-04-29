@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px 24px;
-  background: linear-gradient(135deg, #f0f4f8 0%, #e8eaf6 100%);
+  background: #F9F9F9;
 }
 
 .login-container {
@@ -13,14 +13,14 @@
   max-width: 960px;
   width: 100%;
   background: white;
-  border-radius: 20px;
+  border-radius: 4px;
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
 /* LEFT INFO PANEL */
 .login-info {
-  background: linear-gradient(160deg, #0d47a1, #1565c0 50%, #00695c);
+  background: linear-gradient(160deg, #166830, #1D873E 50%, #26a549);
   padding: 48px 40px;
   color: white;
 }
@@ -138,7 +138,7 @@
 }
 
 .docente-badge {
-  background: #e3f2fd;
+  background: #e8f5e9;
   color: var(--primary);
   border-radius: 8px;
   padding: 10px 14px;
@@ -183,7 +183,7 @@
 
 .input-wrapper input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.12);
+  box-shadow: 0 0 0 3px rgba(29, 135, 62, 0.15);
 }
 
 .input-wrapper input.error {

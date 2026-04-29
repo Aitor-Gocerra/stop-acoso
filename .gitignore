@@ -40,3 +40,32 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+src/environments/environment.prod.ts
+src/environments/environment.staging.ts
+
+# Firebase
+google-services.json
+GoogleService-Info.plist
+.firebaserc
+firebase-debug.log
+
+# SSL / keys / certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+
+# Credential files
+secrets.json
+credentials.json
+service-account*.json
+*-service-account.json
+auth.json

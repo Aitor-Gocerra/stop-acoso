@@ -1,5 +1,5 @@
 .tel-header {
-  background: linear-gradient(135deg, #0d47a1, #1565c0);
+  background: linear-gradient(135deg, #166830, #1D873E);
   color: white;
   padding: 40px 0;
 }
@@ -153,7 +153,7 @@
 
 /* CHAT CTA */
 .chat-cta {
-  background: linear-gradient(135deg, #e0f2f1, #e8f5e9);
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
   border-radius: var(--radius-lg);
   padding: 36px 40px;
   display: flex;

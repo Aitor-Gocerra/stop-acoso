@@ -1,5 +1,5 @@
 .recursos-header {
-  background: linear-gradient(135deg, #0d47a1, #1565c0);
+  background: linear-gradient(135deg, #166830, #1D873E);
   color: white;
   padding: 40px 0;
   margin-bottom: 0;
@@ -131,7 +131,7 @@
 .video-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
 
 .video-thumb {
-  background: linear-gradient(135deg, #1a1a2e, #283593);
+  background: linear-gradient(135deg, #393F4C, #5D5D5D);
   height: 140px;
   display: flex;
   align-items: center;
